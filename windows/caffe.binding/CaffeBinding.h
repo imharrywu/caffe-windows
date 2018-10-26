@@ -12,23 +12,23 @@
 #include <vector>
 
 namespace caffe {
-  struct DataBlob {
-    float* data;
-    std::vector<int> size;
-    std::string name;
-  };
-  class CAFFE_DLL CaffeBinding {
-  public:
-    CaffeBinding();
-    int AddNet(std::string prototxt_path, std::string weights_path, int gpu_id = 0);
-    std::unordered_map<std::string, DataBlob> Forward(int net_id);
-    std::unordered_map<std::string, DataBlob> Forward(std::vector<cv::Mat>&& input_image, int net_id);
-    std::unordered_map<std::string, DataBlob> Forward(std::vector<cv::Mat>& input_image, int net_id);
-    void SetMemoryDataLayer(std::string layer_name, std::vector<cv::Mat>&& input_image, int net_id);
-    void SetMemoryDataLayer(std::string layer_name, std::vector<cv::Mat>& input_image, int net_id);
-    void SetBlobData(std::string blob_name, std::vector<int> blob_shape, float* data, int net_id);
-    DataBlob GetBlobData(std::string blob_name, int net_id);
-    void SetDevice(int gpu_id);
-    ~CaffeBinding();
-  };
+    struct DataBlob {
+        float* data;
+        std::vector<int> size;
+        std::string name;
+    };
+    class CAFFE_DLL CaffeBinding {
+    public:
+        CaffeBinding();
+        int AddNet(std::string prototxt_path, std::string weights_path, int gpu_id = 0);
+        std::unordered_map<std::string, DataBlob> Forward(int net_id);
+        std::unordered_map<std::string, DataBlob> Forward(std::vector<cv::Mat>&& input_image, int net_id);
+        std::unordered_map<std::string, DataBlob> Forward(std::vector<cv::Mat>& input_image, int net_id);
+        void SetMemoryDataLayer(std::string layer_name, std::vector<cv::Mat>&& input_image, int net_id);
+        void SetMemoryDataLayer(std::string layer_name, std::vector<cv::Mat>& input_image, int net_id);
+        void SetBlobData(std::string blob_name, std::vector<int> blob_shape, float* data, int net_id);
+        DataBlob GetBlobData(std::string blob_name, int net_id);
+        void SetDevice(int gpu_id);
+        ~CaffeBinding();
+    };
 }
